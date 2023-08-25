@@ -29,9 +29,17 @@
     NSLog(@"Showing Offer Wall");
 
     [self.showButton setTitle:@"Showing Offer Wall" forState:UIControlStateNormal];
+
+    UIViewController *newViewController = [[UIViewController alloc] init];
+    newViewController.view.backgroundColor = [UIColor redColor];
+    UIViewController *root = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+    [root addChildViewController:newViewController];
+    [root.view addSubview:newViewController.view];
+    [newViewController didMoveToParentViewController:root];
+
     // Create OFWShowOptions object
     OFWShowOptions *showOptions = [OFWShowOptions optionsWithCloseOnRedirect:YES
-                                                              viewController:self
+                                                              viewController:newViewController
                                                                     animated:YES
                                                                 customParams:nil];
     // Pass showOptions to OfferWalls show api
